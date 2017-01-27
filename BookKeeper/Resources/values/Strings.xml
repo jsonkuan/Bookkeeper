@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Bookkeeper</string>
+
+	<string name="new_entry">New Entry</string>
+	<string name="show_all_entries">Show All</string>
+	<string name="generate_report">Generate Report</string>
+
+	<string name="new_entry_description">Here you can do...</string>
+	<string name="income">Asset</string>
+	<string name="expenses">Expense</string>
+	<string name="date">Date: </string>
+	<string name="description">Description: </string>
+	<string name="type">Type: </string>
+	<string name="to_from_account">To/From Account: </string>
+	<string name="total_inkl_tax">Total Ammount (inkl. tax) </string>
+	<string name="tax">Tax: </string>
+	<string name="add_entry">Add Entry</string>
+
+</resources>
