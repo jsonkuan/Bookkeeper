@@ -22,8 +22,16 @@ namespace BookKeeper
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.new_entry_layout);
-
 			bookkeeper = new BookkeeperManager();
+
+			Spinner equitySpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
+			equitySpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(equitySpinner_ItemSelected);
+			var adapter = ArrayAdapter.CreateFromResource(
+				this, Resource.Array.account_type_array, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			equitySpinner.Adapter = adapter;
+
 			selectAccount();
 			saveInput();
 		}
@@ -54,6 +62,14 @@ namespace BookKeeper
 				Entry newEntry = new Entry(date, description);
 				bookkeeper.addEntry(newEntry);
 			};
+		}
+
+		private void equitySpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+
+			string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
+			Toast.MakeText(this, toast, ToastLength.Long).Show();
 		}
 	}
 }
