@@ -9,16 +9,22 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="@string/new_entry_description" />
-    <RadioButton
-        android:id="@+id/incomeRadioButton"
-        android:layout_width="match_parent"
+    <RadioGroup
+        android:id="@+id/incomeOrExpenseRadioGroup"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/income" />
-    <RadioButton
-        android:id="@+id/expensesRadioButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/expenses" />
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/incomeRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/income" />
+        <RadioButton
+            android:id="@+id/expensesRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/expenses" />
+    </RadioGroup>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"

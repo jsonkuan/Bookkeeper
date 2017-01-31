@@ -5,28 +5,7 @@ namespace BookKeeper
 {
 	public class BookkeeperManager
 	{
-		Account IncomeAccount { get; set; }
-		Account ExpenseAccount;
-		Account MoneyAccount;
-		TaxRate TaxRates;
-		Entry Entries;
-
-		//public BookkeeperManager(Account incomeAccount, Account expenseAccount, Account moneyAccount)
-		//{
-		//	IncomeAccount = incomeAccount;
-		//	ExpenseAccount = expenseAccount;
-		//	MoneyAccount = moneyAccount;
-		//}
-
-		//public BookkeeperManager(TaxRate taxRates)
-		//{
-		//	TaxRates = taxRates;
-		//}
-
-		//public BookkeeperManager(Entry entries)
-		//{
-		//	Entries = entries;
-		//}
+		List<Entry> entryArray = new List<Entry>();
 
 		public BookkeeperManager()
 		{
@@ -34,9 +13,14 @@ namespace BookKeeper
 
 		public void addEntry(Entry e)
 		{
-			//Save this entry to the DB	
-			// TEST: Try to save to a list first
-		}
+			Console.WriteLine("In the fuckin method...");
+			entryArray.Add(e);
+			foreach (Entry entry in entryArray)
+			{
+				Console.WriteLine("Date: " + entryArray[0].Date + "\n" + 
+				                  "Description: " + entryArray[0].Description + "\n");
+			}
 
+		}
 	}
 }

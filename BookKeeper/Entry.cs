@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace BookKeeper
 {
 	public class Entry
@@ -21,6 +21,16 @@ namespace BookKeeper
 			TotalAmmount = totalAmmount;
 			TaxRate = taxRate;
 			TypeOfAccount = typeOfAccount;
+		}
+
+		public Entry(string date)
+		{
+			Date = date;
+		}
+
+		public Entry(string date, string description) : this(date)
+		{
+			this.Description = description;
 		}
 	}
 }

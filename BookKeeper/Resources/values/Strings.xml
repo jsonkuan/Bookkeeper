@@ -17,4 +17,23 @@
 	<string name="tax">Tax: </string>
 	<string name="add_entry">Add Entry</string>
 
+	 
+    <string-array name="account_type_array">
+        <item>Income</item>
+        <item>Expense</item>
+        <item>Money</item>
+	</string-array>
+
+	<string-array name="account_array">
+		<item>Checking</item>
+        <item>Savings</item>
+        <item>CashMoney</item>
+    </string-array>
+
+	<string-array name="tax_rate_array">
+        <item>6%</item>
+        <item>12%</item>
+        <item>25%</item>
+	</string-array>
+
 </resources>
