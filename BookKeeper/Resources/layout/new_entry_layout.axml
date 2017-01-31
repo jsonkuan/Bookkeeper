@@ -13,7 +13,6 @@
         android:id="@+id/incomeRadioButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="true"
         android:text="@string/income" />
     <RadioButton
         android:id="@+id/expensesRadioButton"
@@ -90,7 +89,7 @@
             android:layout_weight="0"
             android:text="@string/total_inkl_tax" />
         <EditText
-            android:id="@+id/totalTax"
+            android:id="@+id/totalTaxEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

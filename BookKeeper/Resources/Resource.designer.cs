@@ -1727,7 +1727,7 @@ namespace BookKeeper
 			public const int topPanel = 2131492910;
 			
 			// aapt resource value: 0x7f0c005a
-			public const int totalTax = 2131492954;
+			public const int totalTaxEditText = 2131492954;
 			
 			// aapt resource value: 0x7f0c0058
 			public const int type_equity_spinner = 2131492952;
