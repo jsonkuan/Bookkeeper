@@ -16,7 +16,10 @@ namespace BookKeeper
 	[Activity(Label = "New Entry")]
 	public class NewEntryActivity : Activity
 	{
-		BookkeeperManager bookkeeper;
+		private BookkeeperManager bookkeeper;
+		private string typeOfAccount;
+		private string toFromAccount;
+		private string taxRate;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -25,18 +28,34 @@ namespace BookKeeper
 			bookkeeper = new BookkeeperManager();
 
 			Spinner equitySpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
-			equitySpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(equitySpinner_ItemSelected);
-			var adapter = ArrayAdapter.CreateFromResource(
+			equitySpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(EquitySpinnerItemSelected);
+			var adapterOne = ArrayAdapter.CreateFromResource(
 				this, Resource.Array.account_type_array, Android.Resource.Layout.SimpleSpinnerItem);
 
-			adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			equitySpinner.Adapter = adapter;
+			adapterOne.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			equitySpinner.Adapter = adapterOne;
 
-			selectAccount();
-			saveInput();
+			Spinner ToFromSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
+			ToFromSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(ToFromSpinnerItemSelected);
+			var adapterTwo = ArrayAdapter.CreateFromResource(
+				this, Resource.Array.account_array, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapterTwo.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			ToFromSpinner.Adapter = adapterTwo;
+
+			Spinner taxRateSpinner = FindViewById<Spinner>(Resource.Id.taxSpinner);
+			taxRateSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TaxRateSelected);
+			var adapterThree = ArrayAdapter.CreateFromResource(
+				this, Resource.Array.tax_rate_array, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapterThree.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			taxRateSpinner.Adapter = adapterThree;
+
+			SelectAccount();
+			SaveInput();
 		}
 
-		private void selectAccount()
+		private void SelectAccount()
 		{
 			RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.incomeOrExpenseRadioGroup);
 			RadioButton incomeButton = FindViewById<RadioButton>(Resource.Id.incomeRadioButton );
@@ -48,7 +67,7 @@ namespace BookKeeper
 			};
 		}
 
-		private void saveInput()
+		private void SaveInput()
 		{
 			Button addEntryButton = FindViewById<Button>(Resource.Id.addEntryButton);
 			addEntryButton.Click += delegate
@@ -59,17 +78,30 @@ namespace BookKeeper
 				EditText descriptionEditText = FindViewById<EditText>(Resource.Id.descriptionEditText);
 				string description = descriptionEditText.Text;
 
-				Entry newEntry = new Entry(date, description);
+				EditText totalAmmountEditText = FindViewById<EditText>(Resource.Id.totalTaxEditText);
+				string totalAmmount = totalAmmountEditText.Text;
+
+				Entry newEntry = new Entry(date, description, typeOfAccount, toFromAccount, totalAmmount, taxRate );
 				bookkeeper.addEntry(newEntry);
 			};
 		}
 
-		private void equitySpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		private void EquitySpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
+			typeOfAccount = spinner.GetItemAtPosition(e.Position).ToString();
+		}
 
-			string toast = string.Format("The planet is {0}", spinner.GetItemAtPosition(e.Position));
-			Toast.MakeText(this, toast, ToastLength.Long).Show();
+		private void ToFromSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+			toFromAccount = spinner.GetItemAtPosition(e.Position).ToString();
+		}
+
+		private void TaxRateSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+			taxRate = spinner.GetItemAtPosition(e.Position).ToString();
 		}
 	}
 }
