@@ -1,11 +1,15 @@
 ﻿using System;
 namespace BookKeeper
 {
-	//Possibly subclass to three different account types; 
 	public class Account
 	{
-		public Account()
+		string Name { get; set; }
+		string AccountNumber { get; set; }
+
+		public Account(string name, string accountNumber)
 		{
+			Name = name;
+			AccountNumber = accountNumber;
 		}
 	}
 }

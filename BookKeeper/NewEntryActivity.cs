@@ -20,6 +20,7 @@ namespace BookKeeper
 		private string typeOfAccount;
 		private string toFromAccount;
 		private string taxRate;
+		List<Account> accountList = new List<Account>() {new Account("a1", "12345678"), new Account("a2", "98765432")};
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -27,27 +28,24 @@ namespace BookKeeper
 			SetContentView(Resource.Layout.new_entry_layout);
 			bookkeeper = new BookkeeperManager();
 
-			Spinner equitySpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
-			equitySpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(EquitySpinnerItemSelected);
+			Spinner accountTypeSpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
+			accountTypeSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(AccountTypeSelected);
 			var adapterOne = ArrayAdapter.CreateFromResource(
-				this, Resource.Array.account_type_array, Android.Resource.Layout.SimpleSpinnerItem);
-
-			adapterOne.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			equitySpinner.Adapter = adapterOne;
-
-			Spinner ToFromSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
-			ToFromSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(ToFromSpinnerItemSelected);
-			var adapterTwo = ArrayAdapter.CreateFromResource(
 				this, Resource.Array.account_array, Android.Resource.Layout.SimpleSpinnerItem);
+			adapterOne.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			accountTypeSpinner.Adapter = adapterOne;
 
+			Spinner selectAccountSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
+			selectAccountSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(ToFromAccountSelected);
+			ArrayAdapter<Account> adapterTwo = new ArrayAdapter<Account>(	
+			this, Android.Resource.Layout.SimpleSpinnerItem, accountList);
 			adapterTwo.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			ToFromSpinner.Adapter = adapterTwo;
+			selectAccountSpinner.Adapter = adapterTwo;
 
 			Spinner taxRateSpinner = FindViewById<Spinner>(Resource.Id.taxSpinner);
 			taxRateSpinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(TaxRateSelected);
 			var adapterThree = ArrayAdapter.CreateFromResource(
 				this, Resource.Array.tax_rate_array, Android.Resource.Layout.SimpleSpinnerItem);
-
 			adapterThree.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			taxRateSpinner.Adapter = adapterThree;
 
@@ -86,13 +84,13 @@ namespace BookKeeper
 			};
 		}
 
-		private void EquitySpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		private void AccountTypeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
 			typeOfAccount = spinner.GetItemAtPosition(e.Position).ToString();
 		}
 
-		private void ToFromSpinnerItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		private void ToFromAccountSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
 			toFromAccount = spinner.GetItemAtPosition(e.Position).ToString();

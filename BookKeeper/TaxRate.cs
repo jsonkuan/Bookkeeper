@@ -5,12 +5,11 @@ namespace BookKeeper
 {
 	public class TaxRate
 	{
+		public double Rate { get; set; }
 
-		readonly List<int> taxRates = new List<int> { 6, 12, 20 };
-
-		public TaxRate(List<int> taxRates)
+		public TaxRate(double taxRate)
 		{
-			this.taxRates = taxRates;
+			Rate = taxRate;
 		}
 	}
 }
