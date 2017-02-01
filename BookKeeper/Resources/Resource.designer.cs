@@ -1694,6 +1694,9 @@ namespace BookKeeper
 			// aapt resource value: 0x7f0c003a
 			public const int shortcut = 2131492922;
 			
+			// aapt resource value: 0x7f0c006b
+			public const int showAllListView = 2131492971;
+			
 			// aapt resource value: 0x7f0c000f
 			public const int showCustom = 2131492879;
 			
@@ -1925,7 +1928,10 @@ namespace BookKeeper
 			public const int select_dialog_singlechoice_material = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int support_simple_spinner_dropdown_item = 2130968614;
+			public const int show_all_layout = 2130968614;
+			
+			// aapt resource value: 0x7f040027
+			public const int support_simple_spinner_dropdown_item = 2130968615;
 			
 			static Layout()
 			{

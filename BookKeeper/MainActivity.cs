@@ -15,19 +15,18 @@ namespace BookKeeper
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.main_layout);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
+
 			Button newEntryButton = FindViewById<Button>(Resource.Id.NewEntryButton);
 			Intent newEntry = new Intent(this, typeof(NewEntryActivity));
 			newEntryButton.Click += delegate { StartActivity(newEntry); };
 
 			Button showAllEntriesButton = FindViewById<Button>(Resource.Id.ShowAllEntriesButton);
-			Intent showAll = new Intent(this, typeof(NewEntryActivity));
-			newEntryButton.Click += delegate { StartActivity(showAll); };
+			Intent showAll = new Intent(this, typeof(ShowAllActivity));
+			showAllEntriesButton.Click += delegate { StartActivity(showAll); };
 
 			Button generateReportButton = FindViewById<Button>(Resource.Id.GenerateReportButton);
 			Intent generate = new Intent(this, typeof(NewEntryActivity));
-			newEntryButton.Click += delegate { StartActivity(generate); };
+			generateReportButton.Click += delegate { StartActivity(generate); };
 		}
 	}
 }

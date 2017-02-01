@@ -59,6 +59,7 @@
     <Compile Include="TaxRate.cs" />
     <Compile Include="BookkeeperManager.cs" />
     <Compile Include="NewEntryActivity.cs" />
+    <Compile Include="ShowAllActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -75,6 +76,7 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\new_entry_layout.axml" />
+    <AndroidResource Include="Resources\layout\show_all_layout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

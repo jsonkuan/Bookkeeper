@@ -28,11 +28,11 @@ namespace BookKeeper
 
 		public void addEntry(Entry e)
 		{
-			Console.WriteLine("\n \n \n Showing First Entry...");
+			Console.WriteLine("\n \n \n Showing Entry...");
 			entryList.Add(e);
 			foreach (Entry entry in entryList)
 			{
-				Console.WriteLine("Date: " + entry.Date + "\n" + 
+				Console.WriteLine("\nDate: " + entry.Date + "\n" + 
 				                  "Description: " + entry.Description + "\n" +
 								  "TypeOfAccount: " + entry.TypeOfAccount + "\n" +
 				                  "To/From Account: " + entry.ToFromAccount + "\n" +

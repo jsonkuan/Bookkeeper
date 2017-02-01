@@ -96,6 +96,8 @@ namespace BookKeeper
 
 				Entry newEntry = new Entry(date, description, typeOfAccount, toFromAccount, totalAmmount, taxRate);
 				BookkeeperManager.Instance.addEntry(newEntry);
+
+				//TODO: Reset method with "New entry added" or "Saved" toast
 			};
 		}
 
