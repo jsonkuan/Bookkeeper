@@ -20,6 +20,16 @@ namespace BookKeeper
 			TotalAmmount = totalAmmount;
 			TaxRate = taxRate;
 		}
+
+		//public override string ToString()
+		//{
+		//	return string.Format("Date: " + entryArray[0].Date + "\n" +
+		//						  "Description: " + entryArray[0].Description + "\n" +
+		//						  "TypeOfAccount: " + entryArray[0].TypeOfAccount + "\n" +
+		//						  "To/From Account: " + entryArray[0].ToFromAccount + "\n" +
+		//						  "Total Ammount: " + entryArray[0].TotalAmmount.ToString() + "\n" +
+		//						  "Tax Rate: " + entryArray[0].TaxRate.ToString() + "\n" + "\n");
+		//}
 		
 	}
 }
