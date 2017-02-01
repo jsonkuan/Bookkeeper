@@ -11,6 +11,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+using SQLite;
+
 namespace BookKeeper
 {
 	[Activity(Label = "New Entry")]
@@ -19,20 +21,23 @@ namespace BookKeeper
 		BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 		string typeOfAccount;
 		string toFromAccount;
-		string taxRate;
-
+		double taxRate;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.new_entry_layout);
 
+			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+			SQLiteConnection database = new SQLiteConnection(path + @"\database.db");
+
 			SelectAccount();
 
 			Spinner accountTypeSpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
 			accountTypeSpinner.ItemSelected += AccountTypeSelected;
-			var adapterOne = new ArrayAdapter<Account>(
-				this, Android.Resource.Layout.SimpleSpinnerItem, BookkeeperManager.Instance.moneyAccounts);
+			TableQuery<Account> accounts = database.Table<Account>().Where(x => x.Type == "M-");
+			var adapterOne = new ArrayAdapter<TableQuery<Account>>(
+				this, Android.Resource.Layout.SimpleSpinnerItem, accounts);
 			adapterOne.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			accountTypeSpinner.Adapter = adapterOne;
 
