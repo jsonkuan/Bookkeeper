@@ -31,27 +31,28 @@ namespace BookKeeper
 			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 			SQLiteConnection database = new SQLiteConnection(path + @"\database.db");
 
-			SelectAccount();
+			SelectAccount(database);
 
 			Spinner accountTypeSpinner = FindViewById<Spinner>(Resource.Id.type_equity_spinner);
 			accountTypeSpinner.ItemSelected += AccountTypeSelected;
 			TableQuery<Account> accounts = database.Table<Account>().Where(x => x.Type == "M-");
-			var adapterOne = new ArrayAdapter<TableQuery<Account>>(
-				this, Android.Resource.Layout.SimpleSpinnerItem, accounts);
+			var adapterOne = new ArrayAdapter<Account>(
+				this, Android.Resource.Layout.SimpleSpinnerItem, accounts.ToList());
 			adapterOne.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			accountTypeSpinner.Adapter = adapterOne;
 
 			Spinner taxRateSpinner = FindViewById<Spinner>(Resource.Id.taxSpinner);
 			taxRateSpinner.ItemSelected += TaxRateSelected;
+			TableQuery<TaxRate> tax = database.Table<TaxRate>();
 			var adapterThree = new ArrayAdapter<TaxRate>(
-				this, Android.Resource.Layout.SimpleSpinnerItem, BookkeeperManager.Instance.taxRates);
+				this, Android.Resource.Layout.SimpleSpinnerItem, tax.ToList());
 			adapterThree.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			taxRateSpinner.Adapter = adapterThree;
 
 			SaveInput();
 		}
 
-		void SelectAccount()
+		void SelectAccount(SQLiteConnection db)
 		{
 			RadioGroup radioGroup = FindViewById<RadioGroup>(Resource.Id.incomeOrExpenseRadioGroup);
 			RadioButton incomeButton = FindViewById<RadioButton>(Resource.Id.incomeRadioButton);
@@ -65,8 +66,9 @@ namespace BookKeeper
 					Spinner selectAccountSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
 					selectAccountSpinner.ItemSelected += ToFromAccountSelected;
 
+					TableQuery<Account> accounts = db.Table<Account>().Where(x => x.Type == "I-");
 					var adapterTwo = new ArrayAdapter<Account>(
-						this, Android.Resource.Layout.SimpleSpinnerItem, BookkeeperManager.Instance.incomeAccounts);
+						this, Android.Resource.Layout.SimpleSpinnerItem, accounts.ToList());
 					adapterTwo.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 					selectAccountSpinner.Adapter = adapterTwo;
 				}
@@ -77,8 +79,9 @@ namespace BookKeeper
 					Spinner selectAccountSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
 					selectAccountSpinner.ItemSelected += ToFromAccountSelected;
 
+					TableQuery<Account> accounts = db.Table<Account>().Where(x => x.Type == "E-");
 					var adapterTwo = new ArrayAdapter<Account>(
-						this, Android.Resource.Layout.SimpleSpinnerItem, BookkeeperManager.Instance.expenseAccounts);
+						this, Android.Resource.Layout.SimpleSpinnerItem, accounts.ToList());
 					adapterTwo.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 					selectAccountSpinner.Adapter = adapterTwo;
 				}
@@ -121,7 +124,7 @@ namespace BookKeeper
 		void TaxRateSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
-			taxRate = spinner.GetItemAtPosition(e.Position).ToString();
+			//taxRate = spinner.GetItemAtPosition(e.Position).ToString(); //Changed cast to double from .toString
 		}
 	}
 }

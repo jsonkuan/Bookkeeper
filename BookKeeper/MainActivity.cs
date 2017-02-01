@@ -22,8 +22,8 @@ namespace BookKeeper
 			database.CreateTable<Entry>();
 
 			database.CreateTable<Account>();
-			Account a = new Account();
-			a.configureAccountTypes(database);
+			//Account a = new Account();
+			//a.configureAccountTypes(database);
 
 			database.CreateTable<TaxRate>();
 			TaxRate t = new TaxRate();
