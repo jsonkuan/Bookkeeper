@@ -8,31 +8,20 @@ namespace BookKeeper
 	{
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; private set; }
-		public double Rate { get; }
+		public double Rate { get; set; }
 
-		private TaxRate(double taxRate)
+		public TaxRate(double taxRate)
 		{
 			Rate = taxRate;
 		}
 
 		public TaxRate()
-		{
+		{ 
 		}
 
 		public override string ToString()
 		{
-			return string.Format("{0}%", Rate);
-		}
-
-		public void configureTaxRates(SQLiteConnection db)
-		{
-			TaxRate t1 = new TaxRate(0.07);
-			TaxRate t2 = new TaxRate(0.15);
-			TaxRate t3 = new TaxRate(0.25);
-
-			db.Insert(t1);
-			db.Insert(t2);
-			db.Insert(t3);
+			return string.Format("{0}%", Rate * 100);
 		}
 	}
 }

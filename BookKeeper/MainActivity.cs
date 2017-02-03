@@ -17,17 +17,23 @@ namespace BookKeeper
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.main_layout);
 			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+
 			SQLiteConnection database = new SQLiteConnection(path + @"\database.db");
+			BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 
 			database.CreateTable<Entry>();
 
-			database.CreateTable<Account>();
-			//Account a = new Account();
-			//a.configureAccountTypes(database);
+			if (!BookkeeperManager.TableExists<Account>(database))
+			{
+				database.CreateTable<Account>();
+				bookkeeper.configureAccountTypes(database);
+			}
 
-			database.CreateTable<TaxRate>();
-			TaxRate t = new TaxRate();
-			t.configureTaxRates(database);
+			if (!BookkeeperManager.TableExists<TaxRate>(database))
+			{
+				database.CreateTable<TaxRate>();
+				bookkeeper.configureTaxRates(database);
+			}	
 
 
 			Button newEntryButton = FindViewById<Button>(Resource.Id.NewEntryButton);

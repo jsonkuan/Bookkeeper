@@ -31,7 +31,7 @@ namespace BookKeeper
 
 		public override string ToString()
 		{
-			return string.Format("{0} {1} {2}kr", Date, Description, TotalAmmount);
+			return string.Format("{0} {1} {2}kr {3}", Date, Description, TotalAmmount, TaxRate);
 		}
 	}
 }

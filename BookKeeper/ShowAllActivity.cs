@@ -18,8 +18,6 @@ namespace BookKeeper
 	[Activity(Label = "Your Entries")]
 	public class ShowAllActivity : Activity
 	{
-		//BookkeeperManager bookkeeper = BookkeeperManager.Instance;
-
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
