@@ -18,6 +18,8 @@ namespace BookKeeper
 			SQLiteConnection database = new SQLiteConnection(path + @"\database.db");
 			BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 
+
+
 			database.CreateTable<Entry>();
 
 			if (!BookkeeperManager.TableExists<Account>(database))

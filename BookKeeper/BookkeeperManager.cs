@@ -6,7 +6,7 @@ namespace BookKeeper
 {
 	public class BookkeeperManager
 	{
-		public  SQLiteConnection database;
+		public SQLiteConnection database;
 
 		private static BookkeeperManager instance;
 		public static BookkeeperManager Instance
@@ -31,6 +31,10 @@ namespace BookKeeper
 		public string GetTaxReport()
 		{
 			// THIS WORKS  ---   BUG: MUST ADD ENTRY FIRST OR CRASHES
+			Entry tempEntry = new Entry();
+			AddEntry(tempEntry);
+			database.Delete(tempEntry);
+
 			double totalExpenseTax = 0;
 			double totalIncomeTax = 0;
 			string taxReport = "\n*** MOMS RAPPORT ***\n";
@@ -55,7 +59,6 @@ namespace BookKeeper
 					                             "Beräknade moms: " + ((e.TaxRate * 0.01)  * Convert.ToDouble(e.TotalAmmount) * -1) + "kr\n";
 					totalExpenseTax += (e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount);
 				}
-					
 			}
 
 			return taxReport += "\nTOTAL INKOMSTSKATT: " + Convert.ToString(totalIncomeTax) + "kr\n" +
