@@ -13,11 +13,8 @@ namespace BookKeeper
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
-			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.main_layout);
 			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
 			SQLiteConnection database = new SQLiteConnection(path + @"\database.db");
 			BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 
@@ -26,13 +23,13 @@ namespace BookKeeper
 			if (!BookkeeperManager.TableExists<Account>(database))
 			{
 				database.CreateTable<Account>();
-				bookkeeper.configureAccountTypes(database);
+				bookkeeper.ConfigureAccountTypes(database);
 			}
 
 			if (!BookkeeperManager.TableExists<TaxRate>(database))
 			{
 				database.CreateTable<TaxRate>();
-				bookkeeper.configureTaxRates(database);
+				bookkeeper.ConfigureTaxRates(database);
 			}	
 
 
@@ -45,7 +42,7 @@ namespace BookKeeper
 			showAllEntriesButton.Click += delegate { StartActivity(showAll); };
 
 			Button generateReportButton = FindViewById<Button>(Resource.Id.GenerateReportButton);
-			Intent generate = new Intent(this, typeof(NewEntryActivity));
+			Intent generate = new Intent(this, typeof(GenerateReportActivity));
 			generateReportButton.Click += delegate { StartActivity(generate); };
 		}
 	}

@@ -21,7 +21,7 @@ namespace BookKeeper
 		BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 		string typeOfAccount;
 		string toFromAccount;
-		double taxRate;
+		double taxRate = 0.07; //TODO: Remove default value
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -103,7 +103,7 @@ namespace BookKeeper
 				string totalAmmount = totalAmmountEditText.Text;
 
 				Entry newEntry = new Entry(date, description, typeOfAccount, toFromAccount, totalAmmount, taxRate);
-				bookkeeper.addEntry(newEntry);
+				bookkeeper.AddEntry(newEntry);
 
 				//TODO: Reset method with "New entry added" or "Saved" toast and exit activity
 			};

@@ -66,6 +66,7 @@
     <Compile Include="BookkeeperManager.cs" />
     <Compile Include="NewEntryActivity.cs" />
     <Compile Include="ShowAllActivity.cs" />
+    <Compile Include="GenerateReportActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -83,6 +84,8 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\new_entry_layout.axml" />
     <AndroidResource Include="Resources\layout\show_all_layout.axml" />
+    <AndroidResource Include="Resources\layout\generate_report_layout.axml" />
+    <AndroidResource Include="Resources\layout\show_tax_report_layout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
