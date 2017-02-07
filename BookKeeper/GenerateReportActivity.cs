@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace BookKeeper
 {
-	[Activity(Label = "Generate Reports")]
+	[Activity(Label = "Skapa Rapporter")]
 	public class GenerateReportActivity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -23,7 +23,6 @@ namespace BookKeeper
 			BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 
 			Button taxReportButton = FindViewById<Button>(Resource.Id.TaxReport);
-			Intent displayReport = new Intent(this, typeof(DisplayReportActivity));
 			taxReportButton.Click += delegate
 			{
 				SetContentView(Resource.Layout.show_tax_report_layout);

@@ -7,10 +7,10 @@
         android:id="@+id/AccountReport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Account Report" />
+        android:text="@string/account_report" />
     <Button
         android:id="@+id/TaxReport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tax Report" />
+        android:text="@string/tax_report" />
 </LinearLayout>

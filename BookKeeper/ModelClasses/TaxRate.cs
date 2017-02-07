@@ -21,7 +21,7 @@ namespace BookKeeper
 
 		public override string ToString()
 		{
-			return string.Format("{0}%", Rate * 100);
+			return string.Format("{0}", Rate * 100);
 		}
 	}
 }

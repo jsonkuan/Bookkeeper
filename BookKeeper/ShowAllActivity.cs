@@ -15,7 +15,7 @@ using SQLite;
 
 namespace BookKeeper
 {
-	[Activity(Label = "Your Entries")]
+	[Activity(Label = "Mina Händelser")]
 	public class ShowAllActivity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

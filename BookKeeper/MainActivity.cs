@@ -7,7 +7,7 @@ using SQLite;
 
 namespace BookKeeper
 {
-	[Activity(Label = "Bookkeeper", MainLauncher = true, Icon = "@mipmap/icon")]
+	[Activity(Label = "Book Keeper", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

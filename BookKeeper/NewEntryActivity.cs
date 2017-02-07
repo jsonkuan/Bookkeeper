@@ -15,13 +15,13 @@ using SQLite;
 
 namespace BookKeeper
 {
-	[Activity(Label = "New Entry")]
+	[Activity(Label = "Ny Händelse")]
 	public class NewEntryActivity : Activity
 	{
 		BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 		string typeOfAccount;
 		string toFromAccount;
-		double taxRate = 0.07; //TODO: Remove default value
+		string taxRate;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -62,7 +62,6 @@ namespace BookKeeper
 
 				if (incomeButton.Checked)
 				{
-					Console.WriteLine("Income selected: ");
 					Spinner selectAccountSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
 					selectAccountSpinner.ItemSelected += ToFromAccountSelected;
 
@@ -75,7 +74,6 @@ namespace BookKeeper
 
 				if (expenseButton.Checked)
 				{
-					Console.WriteLine("Expenses selected: ");
 					Spinner selectAccountSpinner = FindViewById<Spinner>(Resource.Id.account_spinner);
 					selectAccountSpinner.ItemSelected += ToFromAccountSelected;
 
@@ -102,7 +100,7 @@ namespace BookKeeper
 				EditText totalAmmountEditText = FindViewById<EditText>(Resource.Id.totalTaxEditText);
 				string totalAmmount = totalAmmountEditText.Text;
 
-				Entry newEntry = new Entry(date, description, typeOfAccount, toFromAccount, totalAmmount, taxRate);
+				Entry newEntry = new Entry(date, description, typeOfAccount, toFromAccount, totalAmmount, Convert.ToDouble(taxRate));
 				bookkeeper.AddEntry(newEntry);
 
 				//TODO: Reset method with "New entry added" or "Saved" toast and exit activity
@@ -124,8 +122,7 @@ namespace BookKeeper
 		void TaxRateSelected(object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
-			//TODO: FIX THIS
-			//taxRate = double.Parse(spinner.GetItemAtPosition(e.Position).ToString());
+			taxRate = spinner.GetItemAtPosition(e.Position).ToString();
 		}
 	}
 }

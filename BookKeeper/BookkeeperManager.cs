@@ -33,33 +33,33 @@ namespace BookKeeper
 			// THIS WORKS  ---   BUG: MUST ADD ENTRY FIRST OR CRASHES
 			double totalExpenseTax = 0;
 			double totalIncomeTax = 0;
-			string taxReport = "\n*** TAX SUMMARY ***\n";
+			string taxReport = "\n*** MOMS RAPPORT ***\n";
 			TableQuery<Entry> query = database.Table<Entry>().Where(x => x.Id >= 1);
 			foreach (Entry e in query)
 			{
 				//INCOME
-				if (e.ToFromAccount.Equals("Salary") || e.ToFromAccount.Equals("Loans"))
+				if (e.ToFromAccount.Equals("Lön") || e.ToFromAccount.Equals("Lån"))
 				{
-					taxReport += "\nAmmount: " + e.TotalAmmount + "kr\n" +
-					                              "Description: " + e.Description + "\n" +
-								  "Tax Rate: " + e.TaxRate * 100 + "%\n" +
-													 "Calculated Tax: " + (e.TaxRate * Convert.ToDouble(e.TotalAmmount)) + "kr\n";
-					totalIncomeTax += e.TaxRate * Convert.ToDouble(e.TotalAmmount);
+					taxReport += "\nSumman: " + e.TotalAmmount + "kr\n" +
+				                  "Beskrivning: " + e.Description + "\n" +
+								  "Moms: " + e.TaxRate + "%\n" +
+					                             "Beräknade moms: " + ((e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount)) + "kr\n";
+					totalIncomeTax += (e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount);
 				}
 				//EXPENSE
-				else if (e.ToFromAccount.Equals("Drugs") || e.ToFromAccount.Equals("Hookers") || e.ToFromAccount.Equals("Bills"))
+				else if (e.ToFromAccount.Equals("Kredit") ||  e.ToFromAccount.Equals("Faktura"))
 				{
-					taxReport += "\nAmmount: " + e.TotalAmmount + "kr\n" +
-								  "Description: " + e.Description + "\n" +
-								  "Tax Rate: " + e.TaxRate * 100 + "%\n" +
-													 "Calculated Tax: " + (e.TaxRate * Convert.ToDouble(e.TotalAmmount) * -1) + "kr\n";
-					totalExpenseTax += e.TaxRate * Convert.ToDouble(e.TotalAmmount);
+					taxReport += "\nSumman: " + e.TotalAmmount + "kr\n" +
+								  "Beskrivning: " + e.Description + "\n" +
+								  "Moms: " + e.TaxRate  + "%\n" +
+					                             "Beräknade moms: " + ((e.TaxRate * 0.01)  * Convert.ToDouble(e.TotalAmmount) * -1) + "kr\n";
+					totalExpenseTax += (e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount);
 				}
 					
 			}
 
-			return taxReport += "\nTOTAL INCOME TAX: " + Convert.ToString(totalIncomeTax) + "kr\n" +
-				                                                 "TOTAL EXPENSE TAX: " + Convert.ToString(totalExpenseTax * -1) + "kr";
+			return taxReport += "\nTOTAL INKOMSTSKATT: " + Convert.ToString(totalIncomeTax) + "kr\n" +
+				                                                 "TOTAL UTGIFTERSKATT: " + Convert.ToString(totalExpenseTax * -1) + "kr";
 		}
 
 		public void ConfigureTaxRates(SQLiteConnection db)
@@ -76,18 +76,17 @@ namespace BookKeeper
 		public void ConfigureAccountTypes(SQLiteConnection db)
 		{
 			//Money Accounts
-			Account m1 = new Account("Savings", "M-");
-			Account m2 = new Account("Stocks", "M-");
-			Account m3 = new Account("Funds", "M-");
+			Account m1 = new Account("Sparkonto", "M-");
+			Account m2 = new Account("Aktier", "M-");
+			Account m3 = new Account("Fonder", "M-");
 
 			//Income Accounts
-			Account i1 = new Account("Salary", "I-");
-			Account i2 = new Account("Loans", "I-");
+			Account i1 = new Account("Lön", "I-");
+			Account i2 = new Account("Lån", "I-");
 
 			//Expense Accounts
-			Account e1 = new Account("Drugs", "E-");
-			Account e2 = new Account("Hookers", "E-");
-			Account e3 = new Account("Bills", "E-");
+			Account e1 = new Account("Kredit", "E-");
+			Account e2 = new Account("Faktura", "E-");
 
 			db.Insert(m1);
 			db.Insert(m2);
@@ -98,7 +97,6 @@ namespace BookKeeper
 
 			db.Insert(e1);
 			db.Insert(e2);
-			db.Insert(e3);
 		}
 
 		public static bool TableExists<T>(SQLiteConnection connection)

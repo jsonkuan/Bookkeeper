@@ -71,28 +71,6 @@ namespace BookKeeper
 			}
 		}
 		
-		public partial class Array
-		{
-			
-			// aapt resource value: 0x7f0d0001
-			public const int account_array = 2131558401;
-			
-			// aapt resource value: 0x7f0d0000
-			public const int account_type_array = 2131558400;
-			
-			// aapt resource value: 0x7f0d0002
-			public const int tax_rate_array = 2131558402;
-			
-			static Array()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Array()
-			{
-			}
-		}
-		
 		public partial class Attribute
 		{
 			
@@ -2034,6 +2012,9 @@ namespace BookKeeper
 			// aapt resource value: 0x7f060012
 			public const int abc_toolbar_collapse_description = 2131099666;
 			
+			// aapt resource value: 0x7f060022
+			public const int account_report = 2131099682;
+			
 			// aapt resource value: 0x7f060021
 			public const int add_entry = 2131099681;
 			
@@ -2069,6 +2050,9 @@ namespace BookKeeper
 			
 			// aapt resource value: 0x7f060020
 			public const int tax = 2131099680;
+			
+			// aapt resource value: 0x7f060023
+			public const int tax_report = 2131099683;
 			
 			// aapt resource value: 0x7f06001e
 			public const int to_from_account = 2131099678;
