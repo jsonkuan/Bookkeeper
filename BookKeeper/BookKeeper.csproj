@@ -67,6 +67,7 @@
     <Compile Include="ModelClasses\Entry.cs" />
     <Compile Include="ModelClasses\TaxRate.cs" />
     <Compile Include="ModelClasses\Account.cs" />
+    <Compile Include="CustomListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -86,6 +87,7 @@
     <AndroidResource Include="Resources\layout\show_all_layout.axml" />
     <AndroidResource Include="Resources\layout\generate_report_layout.axml" />
     <AndroidResource Include="Resources\layout\show_tax_report_layout.axml" />
+    <AndroidResource Include="Resources\layout\list_item_layout.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

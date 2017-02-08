@@ -6,7 +6,6 @@ namespace BookKeeper
 {
 	public class BookkeeperManager
 	{
-		public SQLiteConnection database;
 
 		private static BookkeeperManager instance;
 		public static BookkeeperManager Instance
@@ -21,6 +20,8 @@ namespace BookKeeper
 			}
 		}
 
+		public SQLiteConnection database;
+
 		public void AddEntry(Entry e)
 		{
 			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -30,7 +31,7 @@ namespace BookKeeper
 
 		public string GetTaxReport()
 		{
-			// THIS WORKS  ---   BUG: MUST ADD ENTRY FIRST OR CRASHES
+			//Must create temp-reference to database
 			Entry tempEntry = new Entry();
 			AddEntry(tempEntry);
 			database.Delete(tempEntry);
@@ -47,7 +48,7 @@ namespace BookKeeper
 					taxReport += "\nSumman: " + e.TotalAmmount + "kr\n" +
 				                  "Beskrivning: " + e.Description + "\n" +
 								  "Moms: " + e.TaxRate + "%\n" +
-					                             "Beräknade moms: " + ((e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount)) + "kr\n";
+			                      "Beräknade moms: " + ((e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount)) + "kr\n";
 					totalIncomeTax += (e.TaxRate * 0.01) * Convert.ToDouble(e.TotalAmmount);
 				}
 				//EXPENSE
@@ -109,4 +110,5 @@ namespace BookKeeper
 			return cmd.ExecuteScalar<string>() != null;
 		}
 	}
+
 }

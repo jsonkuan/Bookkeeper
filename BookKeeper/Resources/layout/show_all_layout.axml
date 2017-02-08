@@ -6,5 +6,6 @@
     <ListView
         android:id="@+id/showAllListView"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:scrollbars="vertical" />
 </LinearLayout>
