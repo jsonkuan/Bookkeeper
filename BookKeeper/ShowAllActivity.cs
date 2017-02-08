@@ -24,10 +24,6 @@ namespace BookKeeper
 			SetContentView(Resource.Layout.show_all_layout);
 			BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 
-			string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-			SQLiteConnection db = new SQLiteConnection(path + @"\database.db");
-
-			//TableQuery<Entry> entries = db.Table<Entry>();
 			ListView listview = FindViewById<ListView>(Resource.Id.showAllListView);
 			var adapter = new CustomListAdapter(this, bookkeeper.database);
 			listview.Adapter = adapter;

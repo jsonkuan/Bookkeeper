@@ -13,8 +13,8 @@ namespace BookKeeper
 	{
 		BookkeeperManager bookkeeper = BookkeeperManager.Instance;
 		private Activity context;
-		private List<Entry> entryList = new List<Entry>();
 
+		private List<Entry> entryList = new List<Entry>();
 		public CustomListAdapter(Activity context, SQLiteConnection db)
 		{
 			this.context = context;
@@ -25,6 +25,7 @@ namespace BookKeeper
 			bookkeeper.AddEntry(tempEntry);
 			bookkeeper.database.Delete(tempEntry);
 
+			//Create a list of entries to satisfy the Count method
 			TableQuery<Entry> query = bookkeeper.database.Table<Entry>().Where(x => x.Id >= 1);
 			foreach (Entry e in query)
 			{
